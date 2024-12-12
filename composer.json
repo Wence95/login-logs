@@ -1,5 +1,5 @@
 {
-    "name": "hospital/login-logs",
+    "name": "hospital-clinico-puq/login-logs",
     "description": "Tracker of user logs",
     "type": "flarum-extension",
     "require": {

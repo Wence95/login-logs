@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@hospital/flarum-login-logs",
+    "name": "@hospital-clinico-puq/flarum-login-logs",
     "dependencies": {
         "flarum-webpack-config": "^1.0.0",
         "webpack": "^4.0.0",

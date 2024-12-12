@@ -1,6 +1,6 @@
 <?php
 
-namespace Hospital\LoginLogs\Api\Controllers;
+namespace HospitalClinicoPuq\LoginLogs\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractListController;
 use Illuminate\Database\ConnectionInterface;
@@ -9,7 +9,7 @@ use Tobscure\JsonApi\Document;
 
 class LoginLogController extends AbstractListController
 {
-    public $serializer = \Hospital\LoginLogs\Api\Serializer\LoginLogSerializer::class;
+    public $serializer = \HospitalClinicoPuq\LoginLogs\Api\Serializer\LoginLogSerializer::class;
 
     protected $db;
 

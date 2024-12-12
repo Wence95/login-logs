@@ -5,13 +5,16 @@ use Illuminate\Database\Schema\Builder;
 
 return [
     'up' => function (Builder $schema) {
-        $schema->create('login_logs', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('user_id');
-            $table->timestamp('logged_in_at')->useCurrent();
+        if (!$schema->hasTable('login_logs')) { // Add this check
 
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-        });
+            $schema->create('login_logs', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('user_id');
+                $table->timestamp('logged_in_at')->useCurrent();
+
+                $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            });
+        }
     },
     'down' => function (Builder $schema) {
         $schema->dropIfExists('login_logs');

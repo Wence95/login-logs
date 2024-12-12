@@ -5,7 +5,7 @@ use Flarum\User\Event\LoggedIn;
 use Flarum\User\Event\LoggedOut;
 use Illuminate\Database\ConnectionInterface;
 use Carbon\Carbon;
-use Hospital\LoginLogs\Api\Controllers\LoginLogController;
+use HospitalClinicoPuq\LoginLogs\Api\Controllers\LoginLogController;
 
 return [
     (new Extend\Event())

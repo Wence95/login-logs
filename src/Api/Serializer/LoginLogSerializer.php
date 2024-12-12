@@ -1,6 +1,6 @@
 <?php
 
-namespace Hospital\LoginLogs\Api\Serializer;
+namespace HospitalClinicoPuq\LoginLogs\Api\Serializer;
 
 use Flarum\Api\Serializer\AbstractSerializer;
 

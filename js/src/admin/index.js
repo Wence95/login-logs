@@ -6,5 +6,5 @@ app.initializers.add('hospital-clinico-puq-login-logs', () => {
   app.extensionData
     .for('hospital-clinico-puq-login-logs')
     .registerPage(LoginLogsPage);
-  console.log('Login Logs admin extension initialized');
+  console.log('Login Logs admin extension asdinitialized');
 });

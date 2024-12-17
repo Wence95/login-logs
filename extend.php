@@ -6,6 +6,9 @@ use Flarum\User\Event\LoggedOut;
 use Illuminate\Database\ConnectionInterface;
 use Carbon\Carbon;
 use HospitalClinicoPuq\LoginLogs\Api\Controllers\LoginLogController;
+use HospitalClinicoPuq\LoginLogs\Api\Controllers\LoginLogStatsController;
+use HospitalClinicoPuq\LoginLogs\Api\Controllers\LoginLogTotalController;
+
 
 return [
     (new Extend\Event())
@@ -30,6 +33,10 @@ return [
         }),
     (new Extend\Routes('api'))
         ->get('/loginLogs', 'loginLogs.index', LoginLogController::class),
+    (new Extend\Routes('api'))
+        ->get('/loginLogStats', 'loginLogs.stats', LoginLogStatsController::class),
+    (new Extend\Routes('api'))
+        ->get('/loginLogsTotal', 'loginLogs.total', LoginLogTotalController::class),
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
 ];

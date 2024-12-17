@@ -20,6 +20,15 @@ class LoginLogController extends AbstractListController
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
+        $startDate = $request->getQueryParams()['startDate'] ?? null;
+        $endDate = $request->getQueryParams()['endDate'] ?? null;
+        $userId = $request->getQueryParams()['user'] ?? null;
+
+        $offset = $request->getQueryParams()['offset'] ?? 0;
+        $limit = $request->getQueryParams()['limit'] ?? 10;
+
+        $offset = (int) $offset;
+
         $actor = $request->getAttribute('actor');
         $actor->assertAdmin();  // Ensure only admins can access the logs
 
@@ -27,12 +36,19 @@ class LoginLogController extends AbstractListController
             ->join('users', 'users.id', '=', 'login_logs.user_id')
             ->select('users.username', 'login_logs.logged_in_at', 'login_logs.logged_out_at', 'login_logs.id')
             ->orderBy('login_logs.logged_in_at', 'desc')
-            ->get();
+            ->offset($offset)
+            ->limit($limit);
+        if ($startDate) {
+            $logs = $logs->where('logged_in_at', '>=', $startDate);
+        }
+        if ($endDate) {
+            $logs = $logs->where('logged_in_at', '<=', $endDate);
+        }
+        if ($userId) {
+            $logs = $logs->where('user_id', '=', $userId);
+        }
+        $logs = $logs->get();
 
-        // Make sure each log has an ID
-        return $logs->map(function ($log) {
-            $log->id = $log->id; // Ensure the ID is available
-            return $log;
-        });
+        return $logs;
     }
 }
